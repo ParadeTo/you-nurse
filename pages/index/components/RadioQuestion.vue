@@ -1,13 +1,13 @@
 <template>
 	<view>
 		<Title :content="`${index+1}. ${question.title}`" />
-		<checkbox-group @change="checkboxChange">
+		<radio-group @change="change">
 			<view class="answer" v-for="(answer, answerIndex) in question.answers" :key="answerIndex">
-				<label class="checkbox-text">
-					<checkbox :value="answerIndex.toString()" /> {{answer.text}}
+				<label class="text">
+					<radio :value="answerIndex.toString()" /> {{answer.text}}
 				</label>
 			</view>
-		</checkbox-group>
+		</radio-group>
 	</view>
 </template>
 
@@ -19,10 +19,10 @@
 		},
 		props: ['question', 'index'],
 		methods: {
-			checkboxChange: function(e) {
+			change: function(e) {
 				this.$emit('change', {
 					questionIndex: this.index,
-					answerIndices: e.detail.value
+					answerIndex: e.detail.value
 				})
 			}
 		}
@@ -30,7 +30,7 @@
 </script>
 
 <style>
-	.checkbox-text {
+	.text {
 		font-size: 34rpx;
 		color: #4c4c4c;
 		word-break: break-all;
