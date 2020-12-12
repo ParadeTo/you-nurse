@@ -35,4 +35,7 @@
 		color: #4c4c4c;
 		word-break: break-all;
 	}
+  .answer {
+    margin: 5px 0;
+  }
 </style>

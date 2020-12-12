@@ -15,6 +15,8 @@
   import RadioQuestion from './components/RadioQuestion.vue'
   import FooterButton from './components/FooterButton.vue'
   import Dialog from './components/Dialog.vue'
+  import questions from './questions'
+  
   export default {
     components: {
       CheckQuestion,
@@ -23,65 +25,6 @@
       Dialog
     },
     data() {
-      const questions = [{
-        id: "1",
-        title: '原生渲染的资源回收机制',
-        score: 30,
-        check: true,
-        rightAnswers: [0, 1],
-        answers: [{
-          text: 'asdgasdg11',
-        }, {
-          text: 'asdgasdg2',
-        }, {
-          text: 'asdgasdg3',
-        }]
-      }, {
-        id: "2",
-        title: '原生渲k大时代感健康染的资源回收机制',
-        rightAnswers: [0],
-        score: 1,
-        answers: [{
-          text: '333',
-          score: 3
-        }]
-      }, {
-        id: "1",
-        title: '原生渲染的资源回收机制',
-        rightAnswers: [0],
-        score: 1,
-        answers: [{
-          text: 'asdgasdg11'
-        }, {
-          text: 'asdgasdg2'
-        }, {
-          text: 'asdgasdg3'
-        }]
-      }, {
-        id: "1",
-        title: '原生渲染的资源回收机制 radio',
-        rightAnswers: [0],
-        score: 2,
-        answers: [{
-          text: 'asdgasdg11',
-        }, {
-          text: 'asdgasdg2',
-        }, {
-          text: 'asdgasdg3',
-        }]
-      }, {
-        id: "1",
-        title: '原生渲染的资源回收机制 radio',
-        rightAnswers: [0],
-        score: 3,
-        answers: [{
-          text: 'asdgasdg11',
-        }, {
-          text: 'asdgasdg2',
-        }, {
-          text: 'asdgasdg3',
-        }]
-      }]
       const results = [...new Array(questions.length)].map(() => ({
         answerIndices: []
       }))
@@ -108,11 +51,19 @@
         for (let i = 0, len = this.results.length; i < len; i++) {
           const question = this.questions[i]
           const rightAnswers = question.rightAnswers
-          const answerIndices = this.results[i].answerIndices
-          console.log(rightAnswers, answerIndices)
-          if (rightAnswers.every(answer => answerIndices.includes(answer.toString()))) {
-            score += question.score
+          if (rightAnswers) {
+            const answerIndices = this.results[i].answerIndices
+            if (rightAnswers.every(answer => answerIndices.includes(answer.toString()))) {
+              score += question.score
+            }
+          } else {
+            const answerIndices = this.results[i].answerIndices
+            for (let j = 0, len = answerIndices.length; j < len; j++) {
+              const answer = question.answers[answerIndices[j]]
+              score += answer.score
+            }
           }
+
         }
         return score
       }
