@@ -2,7 +2,7 @@
   <view class="dialog" v-show="show">
     <view class="mask" @click="onMaskClick" />
     <view class="content">
-      {{content}}
+      <slot></slot>
     </view>
   </view>
 </template>
@@ -34,17 +34,20 @@
   }
   
   .content {
+    padding: 10px;
     border-radius: 10px;
-    width: 150px;
-    height: 150px;
+    font-size: 10px;
+    /* width: 150px; */
+    /* height: 150px; */
     background-color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    line-height: 150px;
-    text-align: center;
-    font-size: 70px;
-    color: red;
+    width: 80%;
+    /* line-height: 150px; */
+    /* text-align: center; */
+    /* font-size: 70px; */
+    /* color: red; */
   }
 </style>
