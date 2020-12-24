@@ -1,21 +1,29 @@
 <template>
   <scroll-view class="scroll-view">
-    <navigator url="/pages/sas/index" hover-class="navigator-hover">
-      <view class="cell">焦虑自评量表（SAS）</view>
-    </navigator>
-    <navigator url="/pages/sds/index" hover-class="navigator-hover">
-      <view class="cell">抑郁自评量表（SDS）</view>
-    </navigator>
-    <navigator url="/pages/ftnd/index" hover-class="navigator-hover">
-      <view class="cell">吸烟者尼古丁依赖检验量表（FTND）</view>
-    </navigator>
+    <view class="cell" @click="toSas">焦虑自评量表（SAS）</view>
+    <view class="cell" @click="toSds">抑郁自评量表（SDS）</view>
+    <view class="cell" @click="toFtnd">吸烟者尼古丁依赖检验量表（FTND）</view>
   </scroll-view>
 </template>
 
 <script>
   export default {
-    data() {
-      return {}
+    methods: {
+      toSas() {
+        uni.navigateTo({
+          url: '/pages/sas/index'
+        })
+      },
+      toSds() {
+        uni.navigateTo({
+          url: '/pages/sds/index'
+        })
+      },
+      toFtnd() {
+        uni.navigateTo({
+          url: '/pages/ftnd/index'
+        })
+      }
     }
   }
 </script>
